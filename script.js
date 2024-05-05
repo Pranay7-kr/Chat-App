@@ -1,31 +1,40 @@
-
+//Created an array for UserList
 const user_list = ["Alan", "Bob", "Carol", "Dean", "Elin"];
+// Created an array for emojis
 const emojis = ['😀', '😂', '😍', '😊', '👍', '🎉', '❤️', '🙌', '😎', '😘', '🥳', '🤩', '👏', '😉', '💪'];
-const messageInput = document.getElementById('message-input');
-const chatContainer = document.querySelector('.chat-container');
-const userListContainer = document.querySelector('.user-list');
+const messageInput = document.getElementById('message-input');  // get message input for adding listners.
+const chatContainer = document.querySelector('.chat-container'); // get chat container for adding emojis section.
+const userListContainer = document.querySelector('.user-list'); // get user List container for adding user when anyone write '@' in the message input section.
+
+// Added a event listner, when you write message and click on enter key then your message will display on the screen.
 messageInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         console.log(e.key);
         sendMessage();
     }
-})
+});
 
+
+// Created a sendMessage function, when you write message and click on submit button then your message will display on the screen .
 function sendMessage() {
 
     message = messageInput.value.trim();
+    // If you click on submit button or Enter key without writing message it will return and send a message in ur console.
     if (message === '') {
         console.log("you have to write something in ur message-input");
         return;
     }
+    // Created a randomUser for taking random name from the user_List.
     const randomUser = user_list[Math.floor(Math.random() * user_list.length)];
-    const scrollSection = document.querySelector('.scroll-section');
+    const scrollSection = document.querySelector('.scroll-section'); // get a scroll section for adding the message in the scroll section and display on the screen.
+
+    // Created a time for displaying at what timing you sent the message.
     const currentTime = new Date();
     let hours = currentTime.getHours();
     let minute = currentTime.getMinutes();
 
 
-
+    // Create a message container for adding all neccessary message for displaying on screen such as profile logo, name, message, timing.
     const messageContainer = `
                     <div class="profile-section">
                         <div class="profile-text">${randomUser.substring(0, 2)}</div>
@@ -39,19 +48,23 @@ function sendMessage() {
                 
     `;
 
+    
+    const messageElement = document.createElement('div'); // Created an div tag. 
+    messageElement.classList.add('message-section'); // Added the class in the message element.
+    messageElement.innerHTML = messageContainer; // Storing the message in the message element.
+    scrollSection.appendChild(messageElement); // After that add the message element in scroll section.
+    scrollToBottom(scrollSection); // Created a function, scroll bar always in the down. 
 
-    const messageElement = document.createElement('div');
-    messageElement.classList.add('message-section');
-    messageElement.innerHTML = messageContainer;
-    scrollSection.appendChild(messageElement);
-    scrollToBottom(scrollSection);
+    // Every profile log have diffrent background color
     const profileText = document.querySelectorAll('.profile-text');
     for (let i = 0; i < profileText.length; i++) {
         if (i % 2 != 0) {
             profileText[i].style.backgroundColor = '#110e69';
         }
     }
-    messageInput.value = '';
+    messageInput.value = '';  // After sent the message, the message section will be empty.
+
+    // Created a like button for every message, when you double click on message then like will display. 
     const likeBtn = messageElement.querySelector('.like');
     const likeCount = likeBtn.querySelector('.like-count');
     messageElement.addEventListener('dblclick', () => {
@@ -61,11 +74,12 @@ function sendMessage() {
     })
 }
 
-
+// Scroll bar always in the bottom.
 function scrollToBottom(element) {
     element.scrollTop = element.scrollHeight;
 }
 
+// created a event listner for mention the user name.
 messageInput.addEventListener('keyup', () => {
     const message = messageInput.value;
     if (message.startsWith('@')) {
@@ -80,6 +94,7 @@ messageInput.addEventListener('keyup', () => {
     }
 });
 
+// Displaying the user list on the screen.
 function displayUserList() {
     userListContainer.innerHTML = ''; // Clear previous list
    
@@ -103,8 +118,9 @@ function hideUserList() {
     userListContainer.style.display = 'none';
 }
 
-const emojiButton = document.getElementById('emoji-btn');
 
+// created a emoji button for displaying the emoji on the screen.
+const emojiButton = document.getElementById('emoji-btn');
 
 emojiButton.addEventListener('click', () => {
     let emojiSection = document.querySelector('.emoji-section');
@@ -128,6 +144,7 @@ emojiButton.addEventListener('click', () => {
     }
 });
 
+// adding emoji on message input.
 function insertEmoji(emoji) {
     const messageInput = document.getElementById('message-input');
     
