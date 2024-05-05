@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="index.css">
+    <script src="https://kit.fontawesome.com/b3348ae33f.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar">
+            <h3>Introductions</h3>
+            <div class="nav-section">
+                <span>This channel is For Company Wide Chatter</span>
+                <span>
+                    3|100
+                    <i class="fa-solid fa-user" style="color: #221d2c;"></i>
+                </span>
+
+            </div>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <div class="chat-container">
+            <div class="scroll-section">
+                <div class="message-section" >
+                    <div class="profile-section">
+                        <div class="profile-text">PN</div>
+                        <div class="name-text">PubNub Bot</div>
+                        <span class="time-section">15:47</span>
+                    </div>
+                    <div class="new-message">
+                        <p>Welcome to Team Chat. Send a message now to start intereacting with others users in app</p>
+                    </div>
+                    <div class="like"><i class="fa-solid fa-heart fa-beat" style="color: #9b0303;"></i><span class="like-count">1</span></div>
+                </div>
+            </div>
+            <div class="message-input">
+                <button id="emoji-btn"><i class="fa-regular fa-face-smile"></i></button>
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+            <div class="user-list">
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
